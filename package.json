@@ -1,0 +1,14 @@
+{
+  "name": "crudmarcos",
+  "version": "1.0.0",
+  "description": "todo list vuejs",
+  "main": "todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marcos",
+  "license": "ISC",
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2"
+  }
+}

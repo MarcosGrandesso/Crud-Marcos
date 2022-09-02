@@ -1,0 +1,38 @@
+html {
+  height: 100%;
+  background-color: #b3e5fc;
+}
+
+.projeto {
+  background-color: gray;
+}
+.card-tarefa {
+  border: 1px solid #ccc;
+}
+.spcbtn {
+  justify-content: space-between;
+}
+
+.exc {
+  max-width: 1.6%;
+  color: black;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 25px;
+}
+.m-left {
+  margin-left: 40px;
+}
+
+.exc:hover {
+  color: #01579b;
+}
+
+.d-flex {
+  display: flex;
+  gap: 10px;
+}
+
+.primary {
+  background-color: #01589ba9;
+}

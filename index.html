@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- Materialize CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    
+    <!-- Fontawesome 6 CND-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div id="app">
+    <nav>
+        <div class="nav-wrapper light-blue darken-4">
+          <a href="#!" class="brand-logo m-left"> <i class="material-icons">&nbsp;<i class="fa-solid fa-list-check"></i>Task List</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href=""><i class="material-icons">I</i></a></li>
+            <li><a href=""><i class="material-icons">Love</i></a></li>
+            <li><a href=""><i class="material-icons">JavaScript</i></a></li>
+            <li><a href=""><i class="material-icons"><i class="fa-brands fa-js"></i></i></a></li>
+          </ul>
+        </div>
+      </nav>
+    </nav>
+    <div class="container">
+        <div class="section">
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12" id="elTasks">
+                    <!-- New tasks area-->
+                </div>
+            </div>
+        </div>
+        <div id="app" class="box-tarefas">
+            <h1> <i class="fa-solid fa-list-check">&nbsp;</i>   Lista    </i> </h1>
+
+
+
+            <!-- modal -->
+            <div id="meu-modal" class="modal">
+                <!-- bottom-sheet -->
+                <div class="modal-content">
+                    <h4>New Task </h4>
+                    <p>Formulario para criaçao de tasks</p>
+
+                   
+                        <input type="text"  id="titulo" placeholder="Digite o titulo da task"        v-model="taskCreation.title">
+                        <input type="text"  id="projeto" placeholder="Digite o projeto"              v-model="taskCreation.project">
+                        <input type="text"  id="usuario" placeholder="Seu usuario aqui"              v-model="taskCreation.usuario">
+                        <input type="datetime-local"  id="usuario" placeholder="Seu usuario aqui"    v-model="taskCreation.dueTo">
+                  
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class=" modal-close waves-effect btn-flat waves-light">Fechar</a>
+                    <button class=" modal-close waves-effect btn-flat waves-light primary" @click="create">Submit</button>
+                </div>
+            </div>
+                <!-- fimmodal -->
+
+                            <!-- modal2 -->
+            <div id="meu-modal2" class="modal">
+                <!-- bottom-sheet -->
+                <div class="modal-content">
+                    <h4>Edit Task </h4>
+                    <p>Edite essa task que vc clicou</p>
+
+                   
+                        <input type="text"  id="titulo" placeholder="Digite o titulo da task"        v-model="taskCreation.title">
+                        <input type="text"  id="projeto" placeholder="Digite o projeto"              v-model="taskCreation.project">
+                        <input type="text"  id="usuario" placeholder="Seu usuario aqui"              v-model="taskCreation.usuario">
+                        <input type="datetime-local"  id="usuario" placeholder="Seu usuario aqui"    v-model="taskCreation.dueTo">
+               
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class=" modal-close waves-effect btn-flat waves-light">Fechar</a>
+                    <button class=" modal-close waves-effect btn-flat waves-light primary" @click="update">Save</button>
+                </div>
+            </div>
+                <!-- fimmodal2 -->
+
+
+
+
+              
+            <div class="card horizontal" v-for="tarefa in tasks" :key="tarefa.id">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <div class="d-flex spcbtn">
+                            <h4>{{tarefa.title }}</h4>
+                            <div class="d-flex">
+                                <div class="exc" @click="excluir(tarefa.id)"> <i class="fas fa-trash trash-hover"></i> </div>
+                                <div class="exc modal-trigger" href="#meu-modal2" @click=" atualizador(tarefa.id)"> <i class="fa-solid fa-pen-to-square"></i> </div>
+
+                            </div>
+                        </div>
+
+                        <p>Tarefa id: {{tarefa.id}}</p>
+                    </div>
+                    <div class="card-action">
+                        <p>Tarefa Criada por &nbsp;{{tarefa.usuario}}  e Deve ser feita até o dia {{tarefa.dueTo.slice(0,10)}}</p>
+                    </div>
+                </div>
+            </div>
+       
+
+            <!-- botaoo add -->
+            <div class="">
+                <div class="add ">
+                    <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger" href="#meu-modal"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- <footer class="page-footer orange darken-3">
+      <div class="footer-copyright">
+        <div class="container">© 2022 Frontend</div>
+      </div>
+    </footer> -->
+    <!-- Materialize JavaScript CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/todo.js"></script>
+</body>
+
+</html>
