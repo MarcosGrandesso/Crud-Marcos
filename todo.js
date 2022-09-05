@@ -2,8 +2,11 @@ var app = new Vue({
   el: "#app",
   data: {
     att: 0,
+    carregando: false,
     message: "Olá Vue!",
     tasks: [],
+    tasksFilter: [],
+    parametroFilter: '',
     taskCreation: {
       title: "",
       dueTo: null,
@@ -15,9 +18,9 @@ var app = new Vue({
     excluir(id) {
       fetch(`http://localhost:3000/tasks/${id}`, { method: "DELETE" }).then(
         () => {
-          console.log("passo 3");
-          return false;
-        }
+          this.getTasks()   
+        },
+        
       );
     },
     create() {
@@ -25,6 +28,8 @@ var app = new Vue({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(this.taskCreation),
+      }).then(()=> {
+        this.getTasks() 
       });
     },
     update() {
@@ -34,9 +39,28 @@ var app = new Vue({
         body: JSON.stringify(this.taskCreation),
       }).then(() => {
         att = 0;
+        this.getTasks()
       });
     },
+    getTasks() {
+      this.carregando =true
+      this.tasks = [];
+      let appendTasks = fetch("http://localhost:3000/tasks");
+      appendTasks.then((resolucao) => {
+        resolucao.json().then((body) => {
+          body.forEach((elementJson) => {
+            this.tasks.push(elementJson);
+            this.carregando = false
+            filtragem()
+          });
+        });
+      });
+      
+    },
+    filtragem() {
+      uepa = app.tasks.filter( tarefinha => tarefinha.title.includes(this.parametroFilter))
 
+    },
     atualizador(id) {
       this.att = id;
       console.log(this.att);
@@ -44,22 +68,11 @@ var app = new Vue({
   },
   // fabricio editou isso e  me ensinou q tudo dentro da funcao created é executada uma vez apenas assim q o site roda
   created() {
-    console.log("passo 2.1 - render");
-    this.tasks = [];
-    let appendTasks = fetch("http://localhost:3000/tasks");
-    console.log("passo 2.2");
-    appendTasks.then((resolucao) => {
-      resolucao.json().then((body) => {
-        // console.log(body);
-        console.log("passo 2.3");
-        body.forEach((elementJson) => {
-          this.tasks.push(elementJson);
-        });
-        console.log("passo 2.4");
-      });
-    });
+    this.getTasks()
   },
 });
 
 const elemsModal = document.querySelectorAll(".modal");
 const instancesModal = M.Modal.init(elemsModal);
+
+// app.tasks.filter( tarefinha => tarefinha.title.includes('uepa'))

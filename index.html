@@ -26,10 +26,10 @@
         <div class="nav-wrapper light-blue darken-4">
           <a href="#!" class="brand-logo m-left"> <i class="material-icons">&nbsp;<i class="fa-solid fa-list-check"></i>Task List</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href=""><i class="material-icons">I</i></a></li>
-            <li><a href=""><i class="material-icons">Love</i></a></li>
+            <li><input type="text"  id="titulo" placeholder="Digite o titulo da task"  v-on:keyup="filtragem"  v-model="parametroFilter"></li>
+            <!-- <li><a href=""><i class="material-icons">Love</i></a></li>
             <li><a href=""><i class="material-icons">JavaScript</i></a></li>
-            <li><a href=""><i class="material-icons"><i class="fa-brands fa-js"></i></i></a></li>
+            <li><a href=""><i class="material-icons"><i class="fa-brands fa-js"></i></i></a></li> -->
           </ul>
         </div>
       </nav>
@@ -46,7 +46,7 @@
         <div id="app" class="box-tarefas">
             <h1> <i class="fa-solid fa-list-check">&nbsp;</i>   Lista    </i> </h1>
 
-
+     
 
             <!-- modal -->
             <div id="meu-modal" class="modal">
@@ -90,11 +90,23 @@
             </div>
                 <!-- fimmodal2 -->
 
-
+            <div class="mleft">
+                <div class="preloader-wrapper big active" v-if="carregando">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
 
 
               
-            <div class="card horizontal" v-for="tarefa in tasks" :key="tarefa.id">
+            <div class="card horizontal" v-for="tarefa in tasks" :key="tarefa.id" v-if="!carregando">
                 <div class="card-stacked">
                     <div class="card-content">
                         <div class="d-flex spcbtn">
