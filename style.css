@@ -40,3 +40,8 @@ html {
 .mleft {
   margin-left: 450px
 }
+
+.moveRight {
+  margin-right: 200px;
+  width: 500px;
+}

@@ -51,20 +51,23 @@ var app = new Vue({
           body.forEach((elementJson) => {
             this.tasks.push(elementJson);
             this.carregando = false
-            filtragem()
+            
           });
         });
       });
       
     },
-    filtragem() {
-      uepa = app.tasks.filter( tarefinha => tarefinha.title.includes(this.parametroFilter))
-
-    },
     atualizador(id) {
       this.att = id;
       console.log(this.att);
     },
+  },
+  computed : {
+    filtragem() {
+    return this.tasks.filter( tarefinha => tarefinha.title.includes(this.parametroFilter))
+
+    }
+
   },
   // fabricio editou isso e  me ensinou q tudo dentro da funcao created é executada uma vez apenas assim q o site roda
   created() {

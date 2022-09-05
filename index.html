@@ -26,10 +26,12 @@
         <div class="nav-wrapper light-blue darken-4">
           <a href="#!" class="brand-logo m-left"> <i class="material-icons">&nbsp;<i class="fa-solid fa-list-check"></i>Task List</a>
           <ul class="right hide-on-med-and-down">
-            <li><input type="text"  id="titulo" placeholder="Digite o titulo da task"  v-on:keyup="filtragem"  v-model="parametroFilter"></li>
+            <li class="moveRight"><input type="text"  id="titulo" placeholder="Digite o titulo da task"   v-model="parametroFilter"></li>
+            <li></li>
             <!-- <li><a href=""><i class="material-icons">Love</i></a></li>
             <li><a href=""><i class="material-icons">JavaScript</i></a></li>
             <li><a href=""><i class="material-icons"><i class="fa-brands fa-js"></i></i></a></li> -->
+            <!-- v-on:keyup="function"  -->
           </ul>
         </div>
       </nav>
@@ -103,10 +105,8 @@
                     </div>
                   </div>
             </div>
-
-
-              
-            <div class="card horizontal" v-for="tarefa in tasks" :key="tarefa.id" v-if="!carregando">
+    
+            <div class="card horizontal" v-for="tarefa in filtragem" :key="tarefa.id" v-if="!carregando">
                 <div class="card-stacked">
                     <div class="card-content">
                         <div class="d-flex spcbtn">
@@ -130,7 +130,8 @@
             <!-- botaoo add -->
             <div class="">
                 <div class="add ">
-                    <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger" href="#meu-modal"><i class="fa-solid fa-plus"></i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 modal-trigger" href="#meu-modal">
+                        <i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>
         </div>
